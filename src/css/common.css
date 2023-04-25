@@ -60,3 +60,9 @@ button:disabled {
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
+
+.wrapper {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
