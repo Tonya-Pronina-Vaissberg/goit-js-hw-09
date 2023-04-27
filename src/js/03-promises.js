@@ -29,16 +29,17 @@ function onPromiseCreate(event) {
   let stepValue = Number(step.value);
   let amountValue = Number(amount.value);
 
-  for (let i = 1; i <= amountValue; i += 1) {
-    delayValue += stepValue;
-    
-    createPromise(i, delayValue)
-      .then(({ position, delay }) => {
-        Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-    })
-      .catch(({ position, delay }) => {
-        Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
-    });
-        event.currentTarget.reset();
-      };
+  for (let i = 0; i < amountValue; i++) {
+    createPromise(i, delayValue + stepValue * i)
+      .then(({ position, delayValue }) => {
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delayValue}ms`
+        );
+      })
+      .catch(({ position, delayValue }) => {
+        Notiflix.Notify.failure(
+          `❌ Rejected promise ${position} in ${delayValue}ms`
+        );
+      });
+  }
 }
